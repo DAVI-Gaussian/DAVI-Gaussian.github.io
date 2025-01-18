@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Decoupling Appearance Variations with 3D Consistent Features in Gaussian Splatting">
+  <meta name="keywords" content="DAVIGS">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Decoupling Appearance Variations with 3D Consistent Features in Gaussian Splatting</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/icon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="./static/js/video_comparison.js"></script>
+
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>        
+  
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+});
+</script>
+
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body", style="padding-bottom: 0rem;">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">	
+            Decoupling Appearance Variations with 3D Consistent Features in Gaussian Splatting</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              Jiaqi Lin<sup>1</sup>&nbsp;&nbsp;</span>
+            <span class="author-block">
+              Zhihao Li<sup>2</sup>&nbsp;&nbsp;</span>
+            <span class="author-block">
+              Binxiao Huang<sup>3</sup>&nbsp;&nbsp;</span>
+            <span class="author-block">
+              Xiao Tang<sup>2</sup>&nbsp;&nbsp;</span>
+            </span>
+            <span class="author-block">
+              Jianzhuang Liu<sup>4</sup>&nbsp;&nbsp;</span>
+            </span><br />
+            <span class="author-block">
+              Shiyong Liu<sup>2</sup>&nbsp;&nbsp;</span>
+            </span>
+            <span class="author-block">
+              Xiaofei Wu<sup>2</sup>&nbsp;&nbsp;</span>
+            </span>
+            <span class="author-block">
+              Fenglong Song<sup>2</sup>&nbsp;&nbsp;</span>
+            </span>
+            <span class="author-block">
+              Wenming Yang<sup>1<span style="font-family:Wingdings">*</span></sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block", style="color:#726f6f"><sup>1</sup>Tsinghua University&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="author-block", style="color:#726f6f"><sup>2</sup>Huawei Noah's Ark Lab&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="author-block", style="color:#726f6f"><sup>3</sup>The University of Hong Kong&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="author-block", style="color:#726f6f"><sup>4</sup>Shenzhen Institute of Advanced Technology</span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block", style="font-size: 15px;color:#726f6f">linjq22@mails.tsinghua.edu.cn&nbsp;&nbsp;</span>
+            <span class="author-block", style="font-size: 15px;color:#726f6f">zhihao.li@huawei.com&nbsp;&nbsp;</span>
+            <span class="author-block", style="font-size: 15px;color:#726f6f">yang.wenming@sz.tsinghua.edu.cn</span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <!-- <span class="author-block", style="font-size: 15px;color:#726f6f"><sup>*&nbsp;</sup>Equal contribution&nbsp;&nbsp;&nbsp;&nbsp;</span> -->
+            <!-- <span class="author-block", style="font-size: 15px;color:#726f6f"><sup>†&nbsp;</sup>Corresponding author </span> -->
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block", style="color:#367DBD";>AAAI 2025</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+      </div>
+    </div>
+    <div class="content has-text-justified">
+      <p>
+        Gaussian Splatting has emerged as a prominent 3D representation in novel view synthesis, but it still suffers from appearance variations, which are caused by various factors, such as modern camera ISPs, different time of day, weather conditions, and local light changes. These variations can lead to floaters and color distortions in the rendered images/videos. Recent appearance modeling approaches in Gaussian Splatting are either tightly coupled with the rendering process, hindering real-time rendering, or they only account for mild global variations, performing poorly in scenes with local light changes. In this paper, we propose DAVIGS, a method that decouples appearance variations in a plug-and-play and efficient manner. By transforming the rendering results at the image level instead of the Gaussian level, our approach can model appearance variations with minimal optimization time and memory overhead. Furthermore, our method gathers appearance-related information in 3D space to transform the rendered images, thus building 3D consistency across views implicitly. We validate our method on several appearance-variant scenes, and demonstrate that it achieves state-of-the-art rendering quality with minimal training time and memory usage, without compromising rendering speeds. Additionally, it provides performance improvements for different Gaussian Splatting baselines in a plug-and-play manner.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-three-fifths">
+        <h2 class="title is-3">Method</h2>
+        <img alt="Architecture" src="./static/images/pipeline.svg" width="100%"/>
+        <div class="content has-text-justified">
+          <p>
+            <p><strong>Overall pipeline of DAVIGS.</strong> For each pixel $p$ in the rendered image $\mathcal{I}^r$, we calculate its 3D spatial position $\mathbf{x}$ by back-projecting with its depth $\mathcal{D}(p)$ in the depth map $\mathcal{D}$, and then look up the multi-resolution hash grids for its 3D consistent features $\{\mathbf{f}_i\}$. They are then concatenated with a view-dependent appearance embedding $\mathbf{l}$ and fed into an MLP $f$ to obtain a transformation matrix $\mathcal{M}(p) \in \mathbb{R}^{3\times 4}$, which is used to perform affine transformation on the color $\mathcal{I}^r(p)$ to obtain $\mathcal{I}^t(p)$. The losses $\mathcal{L}_1$ and $\mathcal{L}_\text{D-SSIM}$ are calculated between the transformed image $\mathcal{I}^t$ and the ground truth image $\mathcal{I}$. A regularization term $\mathcal{L}_\mathrm{ID}$ is applied to $\mathcal{M}(p)$ for constraining it close to the identity transformation matrix $\mathcal{M} _{\mathrm{ID}}$.</p>          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+
+<section class="section">
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-three-fifths">
+      <h2 class="title is-3">Comparison With SOTA</h2>
+      <img alt="Architecture" src="./static/images/comparison.png" width="100%"/>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="content">
+      <div class="columns is-centered">
+        <div class="column is-one-third">
+          <div class="video-compare-container" id="materialsDiv1">
+            <video class="video" id="materials1" loop playsinline autoPlay muted src="./static/videos/Comparison_3DGS.mp4" onplay="resizeAndPlay(this)"></video>
+            <canvas height=0 class="videoMerge" id="materials1Merge" style="border-radius: 10px;"></canvas>
+          </div>
+        </div>
+
+        <div class="column is-one-third">
+          <div class="video-compare-container" id="materialsDiv2">
+            <video class="video" id="materials2" loop playsinline autoPlay muted src="./static/videos/Comparison_GSW.mp4" onplay="resizeAndPlay(this)"></video>
+            <canvas height=0 class="videoMerge" id="materials2Merge" style="border-radius: 10px;"></canvas>
+          </div>
+        </div>
+
+        <div class="column is-one-third">
+          <div class="video-compare-container" id="materialsDiv3">
+            <video class="video" id="materials3" loop playsinline autoPlay muted src="./static/videos/Comparison_VastGaussian.mp4" onplay="resizeAndPlay(this)"></video>
+            <canvas height=0 class="videoMerge" id="materials3Merge" style="border-radius: 10px;"></canvas>
+          </div>
+        </div>
+      </div>
+      <p class="subtitle has-text-centered">
+        Please click the videos for better view.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{lin2024davigs,
+  title     = {Decoupling Appearance Variations with 3D Consistent Features in Gaussian Splatting},
+  author    = {Lin, Jiaqi and Li, Zhihao and Huang, Binxiao ans Tang, Xiao and Liu, Jianzhuang and Liu, Shiyong and Wu, Xiaofei and Song, Fenglong and Yang, Wenming},
+  booktitle = {AAAI},
+  year      = {2025}
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            We thank the authors of <a
+            href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> that kindly open sourced the template of this website.
+            The html script of video comparison is borrowed from <a
+            href="https://vastgaussian.github.io/">VastGaussian</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.video-compare-container').forEach(function (container, index) {
+      console.log("Index of the container:", index);
+      container.addEventListener('click', function () {
+        if (index === 0) {
+          this.classList.toggle('expand-right');
+        } else if (index === 2) {
+          this.classList.toggle('expand-left');
+        } else {
+          this.classList.toggle('expanded');
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
